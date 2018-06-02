@@ -72,9 +72,6 @@ for iter=timepoints
 	Ydot(:,iter) = RHS( T(iter), Y(:,iter), Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily );
 end
 
-calc_done = 1;  %przekazuje informacje o tym, ze obliczenia zostaly wykonane
-                %tak, by móc odpaliæ LVADowolnyPunkt               
-
 %Wektor po³o¿eñ:
 Q = [ Y( 1:3*NoB , : )];
 %Wektor predkosci
@@ -82,5 +79,6 @@ DQ = [ Y( 3*NoB+1:6*NoB , : )];
 %Wektor przyspieszen
 D2Q = [ Ydot( 3*NoB+1:6*NoB , : )];
 
+%zebranie wszystkiego do struktury - prostsze funkcje rysujace wykresy
 Dane = {T, Q, DQ, D2Q};
  
