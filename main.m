@@ -58,11 +58,10 @@ for l=1:length(Wiezy)
     end
 end
 
-%% PAUSE
 
 %% Ca³kowanie przy pomocy metody Rungego-Kutty rzêdu 4-5
 
-czas = 1;
+czas = 10;
 krok = 0.005; % Paramtery czasu ca³kowania
 timespan = 0:krok:czas;
 
@@ -94,6 +93,7 @@ steps = czas/krok;
 OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9, 'OutputFcn', @odeplot,'OutputSel',[1 1]); 
 % rysowanie jednej ze zmiennych w celu szybkiego ocenienia postepu
 % (polozenie pierwszego srodka masy)
+
 [T,Y]=ode45(@(t,Y) RHS(t,Y,Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily),timespan,Y0,OPTIONS);
     % Poniewa¿ macierz bezw³adnoœci nie zmienia siê w czasie, wiêc aby nie
     % obliczaæ jej za ka¿dym razem od nowa, jest po prostu przekazywana
@@ -120,11 +120,5 @@ Q = [ Y( 1:3*NoB , : )];
 DQ = [ Y( 3*NoB+1:6*NoB , : )];
 %Wektor przyspieszen
 D2Q = [ Ydot( 3*NoB+1:6*NoB , : )];
-
-function bar(temp, steps)
-    temp = temp +1;
-    progress = round(temp/steps, 2);
-    disp(progress);
-end
 
  
