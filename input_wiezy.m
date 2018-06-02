@@ -1,14 +1,26 @@
-% Wiezy = struct('typ',{},... % dopisanych czy kinematyczny
-%     'klasa',{},... % para postepowa czy obrotowa (innych na razie nie ma)
-%     'bodyi',{},... % numer pierwszego ciala
-%     'bodyj',{},... % numer drugiego ciala
-%     'sA',{},... % wektor sA w i-tym ukladzie
-%     'sB',{},... % wektor sB w j-tym ukladzie
-%     'phi0',{},... % kat phi0 (jezeli para obrotowa - nie uzywamy)
-%     'perp',{},... % wersor prostopadly osi ruchu w ukladzie jtym! (jezeli para obrotowa - nie uzywamy)
-%     'fodt',{},... % funkcja od czasu dla wiezow dopisanych
-%     'dotfodt',{},... % pochodna funkcji od czasu dla wiezow dopisanych
-%     'ddotfodt',{}) % druga pochodna funkcji od czasu dla wiezow dopisanych
+% Pocz¹tkowe po³o¿enia
+q0 = [0.0; 0.85; 0;
+    0.4; 0.75; 0;
+    0.15; 0.45; 0;
+    0.05; 0.15; 0;
+    0.45; 0.6; 0;
+    0.35; 0.2; 0;
+    0.4; 0.1; 0;
+    0.65; 0.25; 0;
+    1.05; 0.3; 0;
+    1.2; -0.25; 0]; 
+
+Wiezy = struct('typ',{},... % dopisanych czy kinematyczny
+    'klasa',{},... % para postepowa czy obrotowa (innych na razie nie ma)
+    'bodyi',{},... % numer pierwszego ciala
+    'bodyj',{},... % numer drugiego ciala
+    'sA',{},... % wektor sA w i-tym ukladzie
+    'sB',{},... % wektor sB w j-tym ukladzie
+    'phi0',{},... % kat phi0 (jezeli para obrotowa - nie uzywamy)
+    'perp',{},... % wersor prostopadly osi ruch (jezeli para obrotowa - nie uzywamy)
+    'fodt',{},... % funkcja od czasu dla wiezow dopisanych
+    'dotfodt',{},... % pochodna funkcji od czasu dla wiezow dopisanych
+    'ddotfodt',{}); % druga pochodna funkcji od czasu dla wiezow dopisanych
 
 Wiezy(1) = cell2struct(...
     {'kinematyczny', 'obrotowy', 0, 4,  [0.0; 0.0], [-0.05; -0.15], [], [], [], [], []}', ...

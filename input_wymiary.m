@@ -1,27 +1,23 @@
 theta = 315;
 force = 500;
-
-%% Szablon struktury
-% Bezwladnosci = struct(
-%     'm',{},... % masa cz³onu (m)
-%     'Iz',{}); % moment bezw³adnoœci cz³onu wzglêdem osi z (I_z)
-
-% Sprezyny = struct(
-%     'k',{},... % sztywnosc sprezyny
-%     'c',{},... % tlumienie w sprezynie
-%     'bodyi',{},... % numer pierwszego ciala przylozenia sprezyny
-%     'bodyj',{},... % numer drugiego ciala przylozenia sprezyny
-%     'sA',{},... % punkt przylozenia sprezyny do ciala i w i-tym ukladzie lokalnym
-%     'sB',{},... % punkt przylozenia sprezyny do ciala j w j-tym ukladzie lokalnym
-%     'd0',{}) % dlugosc swobodna sprezyny
-
-% Sily = struct('F',{},... % wektor przylozonej sily
-%     'bodyi',{},... % numer ciala, do ktorego przylozono sile
-%     'sA',{}) % punkt przylozenia sily do ciala i w i-tym ukladzie lokalnym
-
-%% Masy i momenty bezw³adnoœci cz³onów mechanizmu
-
 NoB = 10; % Liczba cz³onów mechanizmu (Number of Bodies)
+
+Bezwladnosci = struct('m',{},... % masa cz³onu (m)
+    'Iz',{}); % moment bezw³adnoœci cz³onu wzglêdem osi z (I_z)
+
+Sprezyny = struct('k',{},... % sztywnosc sprezyny
+    'c',{},... % tlumienie w sprezynie
+    'bodyi',{},... % numer pierwszego ciala przylozenia sprezyny
+    'bodyj',{},... % numer drugiego ciala przylozenia sprezyny
+    'sA',{},... % punkt przylozenia sprezyny do ciala i w i-tym ukladzie lokalnym
+    'sB',{},... % punkt przylozenia sprezyny do ciala j w j-tym ukladzie lokalnym
+    'd0',{}); % dlugosc swobodna sprezyny
+
+Sily = struct('F',{},... % wektor przylozonej sily
+    'bodyi',{},... % numer ciala, do ktorego przylozono sile
+    'sA',{}); % punkt przylozenia sily do ciala i w i-tym ukladzie lokalnym
+
+
 
 Bezwladnosci(1) = cell2struct({22, 0.7}', fieldnames(Bezwladnosci)); % cz³on 1
 Bezwladnosci(2) = cell2struct({21, 1.6}', fieldnames(Bezwladnosci)); % cz³on 2
