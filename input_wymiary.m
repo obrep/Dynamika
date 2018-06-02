@@ -1,5 +1,5 @@
 theta = 315;
-FFF = 500;
+force = 500;
 
 %% Szablon struktury
 % Bezwladnosci = struct(
@@ -39,12 +39,12 @@ Bezwladnosci(10) = cell2struct({11, 0.3}', fieldnames(Bezwladnosci)); % cz³on 10
 
 NoS = 2; % Number of Springs
 
-Sprezyny(1) = cell2struct({1e4, 5e2, 3, 4, [0.1; 0.3], [-0.1; -0.3], sqrt(0.2^2 + 0.6^2)}', fieldnames(Sprezyny)); % sprezyna 1
-Sprezyny(2) = cell2struct({1.4e4, 6e2, 5, 6, [0.1; 0.4], [-0.1; -0.4], sqrt(0.2^2 + 0.8^2)}', fieldnames(Sprezyny)); % sprezyna 2
+Sprezyny(1) = cell2struct({1e4, 5e2, 3, 4, [0.05; 0.15], [-0.05; -0.15], sqrt(0.2^2 + 0.6^2)}', fieldnames(Sprezyny)); % sprezyna 1
+Sprezyny(2) = cell2struct({1.4e4, 6e2, 5, 6, [0.05; 0.2], [-0.05; -0.2], sqrt(0.2^2 + 0.8^2)}', fieldnames(Sprezyny)); % sprezyna 2
 
 
 %% Si³y skupione przy³o¿one do mechanizmu
 
 NoF = 1; % Number of Forces
 
-Sily(1) = cell2struct({[500*cosd(theta); 500*sind(theta)], 10, [0.1; -0.05]}', fieldnames(Sily)); % jedyna sila
+Sily(1) = cell2struct({[force*cosd(theta); force*sind(theta)], 10, [0.1; -0.05]}', fieldnames(Sily)); % jedyna sila

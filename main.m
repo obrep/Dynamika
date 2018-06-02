@@ -61,8 +61,8 @@ end
 
 %% Ca³kowanie przy pomocy metody Rungego-Kutty rzêdu 4-5
 
-czas = 10;
-krok = 0.01; % Paramtery czasu ca³kowania
+czas = 5;
+krok = 0.005; % Paramtery czasu ca³kowania
 timespan = 0:krok:czas;
 
 M = MacierzMasowa(Bezwladnosci, NoB);
@@ -95,6 +95,7 @@ OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9, 'OutputFcn', @odeplot,'OutputSe
 % (polozenie 10 srodka masy)
 
 [T,Y]=ode45(@(t,Y) RHS(t,Y,Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily),timespan,Y0,OPTIONS);
+    
     % Poniewa¿ macierz bezw³adnoœci nie zmienia siê w czasie, wiêc aby nie
     % obliczaæ jej za ka¿dym razem od nowa, jest po prostu przekazywana
     % jako argument funkcji ca³kowanej
@@ -110,10 +111,8 @@ for iter=timepoints
 end
 
 calc_done = 1;  %przekazuje informacje o tym, ze obliczenia zostaly wykonane
-                %tak, by móc odpaliæ LVADowolnyPunkt
-                
-%% PAUSE
-%Porz¹dkowanie danych wyjœciowych
+                %tak, by móc odpaliæ LVADowolnyPunkt               
+
 %Wektor po³o¿eñ:
 Q = [ Y( 1:3*NoB , : )];
 %Wektor predkosci
