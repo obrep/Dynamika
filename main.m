@@ -1,4 +1,5 @@
-%% 
+clear all
+close all
 % Utworzenie pustej struktury do przechowywania wiêzów w postaci ogónej
 Wiezy = struct('typ',{},... % dopisanych czy kinematyczny
     'klasa',{},... % para postepowa czy obrotowa (innych na razie nie ma)
@@ -33,8 +34,6 @@ input_wymiary;
 % Inicjalizacja zmiennej do wyznaczania liczby równañ wiêzów 
 rows = 0;
 
-%% PAUSE
-
 
 for l=1:length(Wiezy)
     if(lower(Wiezy(l).typ(1)) == 'd')
@@ -63,10 +62,9 @@ end
 
 %% Ca³kowanie przy pomocy metody Rungego-Kutty rzêdu 4-5
 
-tstart = 0;
-tstop = 1;
-timestep = 0.1; % Paramtery czasu ca³kowania
-timespan = tstart:timestep:tstop;
+czas = 1;
+krok = 0.005; % Paramtery czasu ca³kowania
+timespan = 0:krok:czas;
 
 M = MacierzMasowa(Bezwladnosci, NoB);
 
@@ -83,11 +81,19 @@ q0 = [0.7; -0.2; 0;
 
 qdot0 = zeros(size(q0)); % Pocz¹tkowe prêdkoœci
 
+%aby skorzystac z ode45 musimy zamienic uklad rownan rozniczkowych drugiego
+%stopnia na pierwszego stopnia, w tym celu wrzucamy do Y warunki poczatkowe
+%i predkosc
 Y0 = [q0; qdot0]; % Wektor, który bêdzie ca³kowany
 
 %% PAUSE
 
-OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9);
+temp = 1;
+steps = czas/krok;
+
+OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9, 'OutputFcn', @odeplot,'OutputSel',[1 1]); 
+% rysowanie jednej ze zmiennych w celu szybkiego ocenienia postepu
+% (polozenie pierwszego srodka masy)
 [T,Y]=ode45(@(t,Y) RHS(t,Y,Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily),timespan,Y0,OPTIONS);
     % Poniewa¿ macierz bezw³adnoœci nie zmienia siê w czasie, wiêc aby nie
     % obliczaæ jej za ka¿dym razem od nowa, jest po prostu przekazywana
@@ -97,6 +103,8 @@ Y = Y';
     
 timepoints = 1:( length(T) );
 Ydot = zeros(size(Y));
+
+
 for iter=timepoints
 	Ydot(:,iter) = RHS( T(iter), Y(:,iter), Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily );
 end
@@ -113,6 +121,10 @@ DQ = [ Y( 3*NoB+1:6*NoB , : )];
 %Wektor przyspieszen
 D2Q = [ Ydot( 3*NoB+1:6*NoB , : )];
 
-
+function bar(temp, steps)
+    temp = temp +1;
+    progress = round(temp/steps, 2);
+    disp(progress);
+end
 
  

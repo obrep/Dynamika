@@ -1,8 +1,11 @@
 function [Ydot] = RHS(t,Y,Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily)
 %RHS Wektor prawych stron w równaniu liniowym dynamiki
 
+%stale stabilizacyjne do metody baumgarte - wieksze od zera 
 alpha = 10;
-beta = 10;
+%dla alpha = beta mamy wartosc krytyczna tlumienia, dlatego najczesciej
+%wybiera sie taka konfigurcje
+beta = alpha;
 
 % Pierwsza po³owa wektora Y to po³o¿enia, druga po³owa to prêdkoœci
 middle = uint16(length(Y)/2);
