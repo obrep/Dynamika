@@ -7,8 +7,10 @@ function [ Q ] = SilyUogolnione( NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily, q,
 
 % Si³y grawitacyjne
 
+g = 9.80665;
+
 for iter=1:NoB
-    Q(3*iter-1, 1) = - Bezwladnosci(iter).m * grav();
+    Q(3*iter-1, 1) = - Bezwladnosci(iter).m * g;
 end
 
 %Si?y od sprà?yn

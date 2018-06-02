@@ -93,7 +93,7 @@ for l=1:length(Wiezy)
 end
 
 wspolczynnik_uwarunkowania = cond(Jacob);
-if (wspolczynnik_uwarunkowania > (1/epsilon()))
+if (wspolczynnik_uwarunkowania > 1e6)
     error('Macierz Jacobiego osobliwa');
 end
 

@@ -62,21 +62,21 @@ end
 %% Ca³kowanie przy pomocy metody Rungego-Kutty rzêdu 4-5
 
 czas = 10;
-krok = 0.005; % Paramtery czasu ca³kowania
+krok = 0.01; % Paramtery czasu ca³kowania
 timespan = 0:krok:czas;
 
 M = MacierzMasowa(Bezwladnosci, NoB);
 
-q0 = [0.7; -0.2; 0;
-    0; 0.2; 0;
-    0.2; 0.3; 0;
-    1.55; -0.35; 0;
-    0.9; 0.2; 0;
-    0.2; -0.35; 0;
-    0.6; -0.25; 0;
-    0.15; -0.45; 0;
-    0.25; 0.05; 0;
-    0.7; 0; 0]; % Pocz¹tkowe po³o¿enia
+q0 = [0.0; 0.85; 0;
+    0.4; 0.75; 0;
+    0.15; 0.45; 0;
+    0.05; 0.15; 0;
+    0.45; 0.6; 0;
+    0.35; 0.2; 0;
+    0.4; 0.1; 0;
+    0.65; 0.25; 0;
+    1.05; 0.3; 0;
+    1.2; -0.25; 0]; % Pocz¹tkowe po³o¿enia
 
 qdot0 = zeros(size(q0)); % Pocz¹tkowe prêdkoœci
 
@@ -90,9 +90,9 @@ Y0 = [q0; qdot0]; % Wektor, który bêdzie ca³kowany
 temp = 1;
 steps = czas/krok;
 
-OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9, 'OutputFcn', @odeplot,'OutputSel',[1 1]); 
+OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9, 'OutputFcn', @odeplot,'OutputSel',[28 28]); 
 % rysowanie jednej ze zmiennych w celu szybkiego ocenienia postepu
-% (polozenie pierwszego srodka masy)
+% (polozenie 10 srodka masy)
 
 [T,Y]=ode45(@(t,Y) RHS(t,Y,Wiezy,rows,M, NoB, Bezwladnosci, NoS, Sprezyny, NoF, Sily),timespan,Y0,OPTIONS);
     % Poniewa¿ macierz bezw³adnoœci nie zmienia siê w czasie, wiêc aby nie

@@ -2,10 +2,12 @@ theta = 315;
 FFF = 500;
 
 %% Szablon struktury
-% Bezwladnosci = struct('m',{},... % masa cz³onu (m)
+% Bezwladnosci = struct(
+%     'm',{},... % masa cz³onu (m)
 %     'Iz',{}); % moment bezw³adnoœci cz³onu wzglêdem osi z (I_z)
 
-% Sprezyny = struct('k',{},... % sztywnosc sprezyny
+% Sprezyny = struct(
+%     'k',{},... % sztywnosc sprezyny
 %     'c',{},... % tlumienie w sprezynie
 %     'bodyi',{},... % numer pierwszego ciala przylozenia sprezyny
 %     'bodyj',{},... % numer drugiego ciala przylozenia sprezyny
@@ -21,28 +23,28 @@ FFF = 500;
 
 NoB = 10; % Liczba cz³onów mechanizmu (Number of Bodies)
 
-Bezwladnosci(1) = cell2struct({36, 8}', fieldnames(Bezwladnosci)); % cz³on 1
-Bezwladnosci(2) = cell2struct({14.5, 0.5}', fieldnames(Bezwladnosci)); % cz³on 2
-Bezwladnosci(3) = cell2struct({14, 0.9}', fieldnames(Bezwladnosci)); % cz³on 3
-Bezwladnosci(4) = cell2struct({18, 1}', fieldnames(Bezwladnosci)); % cz³on 4
-Bezwladnosci(5) = cell2struct({2.7, 0.2}', fieldnames(Bezwladnosci)); % cz³on 5
-Bezwladnosci(6) = cell2struct({0.3, 0.1}', fieldnames(Bezwladnosci)); % cz³on 6
-Bezwladnosci(7) = cell2struct({0.3, 0.1}', fieldnames(Bezwladnosci)); % cz³on 7
-Bezwladnosci(8) = cell2struct({0.6, 0.1}', fieldnames(Bezwladnosci)); % cz³on 8
-Bezwladnosci(9) = cell2struct({0.6, 0.1}', fieldnames(Bezwladnosci)); % cz³on 9
-Bezwladnosci(10) = cell2struct({7, 0.2}', fieldnames(Bezwladnosci)); % cz³on 10
+Bezwladnosci(1) = cell2struct({22, 0.7}', fieldnames(Bezwladnosci)); % cz³on 1
+Bezwladnosci(2) = cell2struct({21, 1.6}', fieldnames(Bezwladnosci)); % cz³on 2
+Bezwladnosci(3) = cell2struct({2, 0.1}', fieldnames(Bezwladnosci)); % cz³on 3
+Bezwladnosci(4) = cell2struct({2, 0.1}', fieldnames(Bezwladnosci)); % cz³on 4
+Bezwladnosci(5) = cell2struct({3, 0.2}', fieldnames(Bezwladnosci)); % cz³on 5
+Bezwladnosci(6) = cell2struct({3, 0.2}', fieldnames(Bezwladnosci)); % cz³on 6
+Bezwladnosci(7) = cell2struct({25, 5}', fieldnames(Bezwladnosci)); % cz³on 7
+Bezwladnosci(8) = cell2struct({7, 0.4}', fieldnames(Bezwladnosci)); % cz³on 8
+Bezwladnosci(9) = cell2struct({5, 0.3}', fieldnames(Bezwladnosci)); % cz³on 9
+Bezwladnosci(10) = cell2struct({11, 0.3}', fieldnames(Bezwladnosci)); % cz³on 10
 
 
 %% Parametry fizyczne sprê¿yn
 
 NoS = 2; % Number of Springs
 
-Sprezyny(1) = cell2struct({3e5, 3e3, 6, 7, [0.6; 0.15], [-0.6; -0.15], sqrt(0.68)}', fieldnames(Sprezyny)); % sprezyna 1
-Sprezyny(2) = cell2struct({1e5, 1e3, 8, 9, [0.15; 0.75], [-0.15; -0.75], sqrt(1.04)}', fieldnames(Sprezyny)); % sprezyna 2
+Sprezyny(1) = cell2struct({1e4, 5e2, 3, 4, [0.1; 0.3], [-0.1; -0.3], sqrt(0.2^2 + 0.6^2)}', fieldnames(Sprezyny)); % sprezyna 1
+Sprezyny(2) = cell2struct({1.4e4, 6e2, 5, 6, [0.1; 0.4], [-0.1; -0.4], sqrt(0.2^2 + 0.8^2)}', fieldnames(Sprezyny)); % sprezyna 2
 
 
 %% Si³y skupione przy³o¿one do mechanizmu
 
 NoF = 1; % Number of Forces
 
-Sily(1) = cell2struct({[500*cosd(theta); 500*sind(theta)], 4, [0.35; -0.15]}', fieldnames(Sily)); % jedyna sila
+Sily(1) = cell2struct({[500*cosd(theta); 500*sind(theta)], 10, [0.1; -0.05]}', fieldnames(Sily)); % jedyna sila
