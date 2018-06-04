@@ -3,6 +3,7 @@ function [  ] = plot_center(element, Dane)
     Q = cell2mat(Dane(2));
     DQ = cell2mat(Dane(3));
     D2Q = cell2mat(Dane(4));
+nrk = element * 3;
 nry = element*3-1;
 nrx = nry -1;
 t = T(:,1);
@@ -49,4 +50,11 @@ f = figure('Name',name);
 movegui(f,'southeast');
 name = 'Wykres przyspieszenia po wspolrzednej y';
 plot(t,D2Q(nry,:))
+title(name)
+
+name = 'D2Qkat(y)';
+f = figure('Name',name);
+movegui(f,'southeast');
+name = 'Wykres przyspieszenia katowego';
+plot(t,D2Q(nrk,:)*180/pi)
 title(name)
